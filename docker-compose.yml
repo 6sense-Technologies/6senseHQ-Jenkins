@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    restart: always
+    ports:
+      - "8080:8080"
+      - "50000:50000" # JNLP agent port
+    environment:
+      - JENKINS_OPTS=--prefix=/
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./backup:/backup
+    networks:
+      - jenkins_net
+
+  agent:
+    image: jenkins/inbound-agent:latest
+    container_name: jenkins-agent
+    depends_on:
+      - jenkins
+    environment:
+      JENKINS_URL: http://jenkins:8080
+      JENKINS_AGENT_NAME: docker-agent
+      JENKINS_SECRET: B4T35RjVOm6O266GkyOiaiWhbLg4uUl3
+    networks:
+      - jenkins_net
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/letsencrypt
+      - ./nginx/ssl:/var/www/certbot
+    networks:
+      - jenkins_net
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./nginx/ssl:/etc/letsencrypt
+      - ./nginx/ssl:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done'"
+
+volumes:
+  jenkins_home:
+
+networks:
+  jenkins_net:
