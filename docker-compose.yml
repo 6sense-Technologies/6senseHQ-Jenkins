@@ -18,7 +18,7 @@ services:
       - jenkins_net
 
   agent:
-    image: jenkins/inbound-agent:latest
+    image: jenkins-agent-node
     container_name: jenkins-agent
     depends_on:
       - jenkins
