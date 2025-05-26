@@ -26,6 +26,8 @@ services:
       JENKINS_URL: http://jenkins:8080
       JENKINS_AGENT_NAME: docker-agent
       JENKINS_SECRET: 15adc379e0288a4f020ad5d8df476ac09bf05c19a85d4ab7d1b4ab35e929bdf8
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - jenkins_net
 
