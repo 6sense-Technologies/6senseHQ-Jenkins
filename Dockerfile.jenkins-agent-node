@@ -13,7 +13,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
   && npm install -g npm@latest
 
 # 👉 Install Infisical CLI
-RUN curl -sSfL https://infisical.com/install.sh | sh
+RUN apk add --no-cache bash sudo curl
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' | bash
+RUN apk update && apk add infisical
 
 
 # Add jenkins user to docker group with GID 988 (host Docker group)
