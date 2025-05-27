@@ -43,6 +43,8 @@ services:
       - ENCRYPTION_KEY=${ENCRYPTION_KEY}
       - AUTH_SECRET=${AUTH_SECRET}
       - SITE_URL=${SITE_URL}
+      - REDIS_URL=${REDIS_URL}
+      - REDIS_TLS_CA_FILE=${REDIS_TLS_CA_FILE}
     networks:
       - jenkins_net
 
