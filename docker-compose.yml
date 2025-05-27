@@ -33,6 +33,16 @@ services:
     networks:
       - jenkins_net
 
+  infisical:
+    image: infisical/infisical:latest
+    container_name: infisical
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - MONGO_URL=${MONGO_URL}
+    networks:
+      - jenkins_net
+
   nginx:
     image: nginx:latest
     container_name: nginx
