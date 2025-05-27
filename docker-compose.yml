@@ -40,7 +40,9 @@ services:
     environment:
       - NODE_ENV=production
       - MONGO_URL=${MONGO_URL}
-      - ROOT_ENCRYPTION_KEY=${ROOT_ENCRYPTION_KEY}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - AUTH_SECRET=${AUTH_SECRET}
+      - SITE_URL=${SITE_URL}
     networks:
       - jenkins_net
 
