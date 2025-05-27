@@ -10,7 +10,7 @@ services:
       - "6379:6379"
     volumes:
       - ./redis.conf:/usr/local/etc/redis/redis.conf
-      - ./certs:/usr/local/etc/redis
+      # - ./certs:/usr/local/etc/redis
     networks:
       - redis_net
 
