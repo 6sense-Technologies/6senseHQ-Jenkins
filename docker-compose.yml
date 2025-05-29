@@ -40,6 +40,7 @@ services:
     environment:
       - NODE_ENV=production
       - DB_CONNECTION_URI=${DB_CONNECTION_URI}
+      - DB_ROOT_CERT=${DB_ROOT_CERT}
       - ENCRYPTION_KEY=${ENCRYPTION_KEY}
       - AUTH_SECRET=${AUTH_SECRET}
       - SITE_URL=${SITE_URL}
