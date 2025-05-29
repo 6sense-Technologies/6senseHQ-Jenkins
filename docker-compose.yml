@@ -34,17 +34,16 @@ services:
       - jenkins_net
 
   infisical:
-    image: infisical/infisical:latest
+    image: infisical/infisical:latest-postgres
     container_name: infisical
     restart: always
     environment:
       - NODE_ENV=production
-      - MONGO_URL=${MONGO_URL}
+      - DB_CONNECTION_URI=${DB_CONNECTION_URI}
       - ENCRYPTION_KEY=${ENCRYPTION_KEY}
       - AUTH_SECRET=${AUTH_SECRET}
       - SITE_URL=${SITE_URL}
       - REDIS_URL=${REDIS_URL}
-      - REDIS_TLS_CA_FILE=${REDIS_TLS_CA_FILE}
     networks:
       - jenkins_net
 
