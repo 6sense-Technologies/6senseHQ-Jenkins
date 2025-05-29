@@ -45,6 +45,9 @@ services:
       - AUTH_SECRET=${AUTH_SECRET}
       - SITE_URL=${SITE_URL}
       - REDIS_URL=${REDIS_URL}
+      - NODE_EXTRA_CA_CERTS=./certs/db-ca-certificate.crt
+    volumes:
+      - ./certs:/certs
     networks:
       - jenkins_net
 
