@@ -46,6 +46,12 @@ services:
       - SITE_URL=${SITE_URL}
       - REDIS_URL=${REDIS_URL}
       - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_PORT=587
+      - SMTP_FROM_ADDRESS=infisical@6sensehq.com
+      - SMTP_FROM_NAME=Infisical
     volumes:
       - ./certs:/certs
     networks:
