@@ -11,6 +11,8 @@ services:
     ports:
       - "9090:9090"
     restart: unless-stopped
+    networks:
+      - jenkins_net
 
   grafana:
     image: grafana/grafana:latest
@@ -23,6 +25,8 @@ services:
     volumes:
       - grafana-storage:/var/lib/grafana
     restart: unless-stopped
+    networks:
+      - jenkins_net
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -30,6 +34,8 @@ services:
     ports:
       - "9100:9100"
     restart: unless-stopped
+    networks:
+      - jenkins_net
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
@@ -42,6 +48,12 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     restart: unless-stopped
+    networks:
+      - jenkins_net
 
 volumes:
   grafana-storage:
+
+networks:
+  jenkins_net:
+    external: true

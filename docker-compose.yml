@@ -84,3 +84,4 @@ volumes:
 
 networks:
   jenkins_net:
+    external: true
