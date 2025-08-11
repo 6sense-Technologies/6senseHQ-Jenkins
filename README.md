@@ -114,6 +114,16 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 ---
 
+## 🟢 Update Guide
+```
+# Backup Jenkins before proceed (Must)
+docker compose pull jenkins infisical nginx certbot
+docker compose build --pull --no-cache agent
+docker compose --env-file .env up -d --remove-orphans
+docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"
+```
+
+
 ## 🟢 Status: LIVE
 
 Access Jenkins:  
