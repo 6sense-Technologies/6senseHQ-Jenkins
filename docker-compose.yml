@@ -80,9 +80,10 @@ services:
       - ./nginx/ssl:/etc/letsencrypt
       - ./nginx/ssl:/var/www/certbot
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./scripts/certbot/deploy:/etc/letsencrypt/renewal-hooks/deploy:ro
     networks:
       - jenkins_net
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew --deploy-hook \"docker exec nginx nginx -s reload\"; done'"
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done'"
 
 volumes:
   jenkins_home:

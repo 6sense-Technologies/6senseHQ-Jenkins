@@ -109,7 +109,8 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 | Start Jenkins             | `docker-compose up -d` |
 | Stop Jenkins              | `docker-compose down`  |
 | View logs                 | `docker logs jenkins`  |
-| Force cert renewal        | `docker exec certbot certbot renew --force-renewal` |
+| Force cert renewal        | `docker exec certbot certbot renew --force-renewal` (reloads nginx automatically via deploy hook) |
+| Reload nginx after renew  | `docker exec nginx nginx -s reload` |
 | Backup Jenkins            | `./backup.sh`           |
 
 ---
