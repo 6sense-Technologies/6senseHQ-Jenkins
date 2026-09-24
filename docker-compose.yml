@@ -34,7 +34,7 @@ services:
       - jenkins_net
 
   infisical:
-    image: infisical/infisical:v0.165.13
+    image: infisical/infisical:v0.165.16
     container_name: infisical
     restart: always
     environment:
